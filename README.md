@@ -1,1 +1,1 @@
-# Java OSX XPC Bridge
+# XPC Bindings for Java
