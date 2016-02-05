@@ -1,5 +1,3 @@
-#include <queue>
-#include <xpc/xpc.h>
 #include "XpcHandle.h"
 
 void XpcHandle::connect(const char *name) {
