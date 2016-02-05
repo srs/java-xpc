@@ -1,0 +1,43 @@
+apply plugin: 'cpp'
+
+ext {
+  javaHome = System.properties['java.home']
+}
+
+model {
+  buildTypes {
+    release
+  }
+
+  platforms {
+    x86 {
+      architecture 'x86'
+    }
+    x64 {
+      architecture 'x86_64'
+    }
+  }
+
+  repositories {
+    libs( PrebuiltLibraries ) {
+      jdk {
+        headers.srcDirs "${javaHome}/../include",
+                        "${javaHome}/../include/win32",
+                        "${javaHome}/../include/darwin",
+                        "${javaHome}/../include/linux"
+      }
+    }
+  }
+
+  components {
+    xpc( NativeLibrarySpec ) {
+      sources {
+        cpp {
+          source {
+            lib library: 'jdk', linkage: 'api'
+          }
+        }
+      }
+    }
+  }
+}
